@@ -19,3 +19,12 @@ jobs:
       - run: pip install -r requirements.txt
 
       - run: PYTHONPATH=. pytest
+
+  docker-build:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: docker build -t fastapi-ci-practice .
